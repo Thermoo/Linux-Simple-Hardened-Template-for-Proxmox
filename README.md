@@ -36,7 +36,9 @@ usermod -aG sudo YOURUSER
 **On your Personal Computer,** generate a key if you haven't already:
 ```bash
 ssh-keygen -t ed25519 -C "YOUR-EMAIL@EXAMPLE.COM"
-```  
+```
+
+Make sure to click enter on each field where it asks you to put in a path, etc. for simplicity.
 It will generate a public and private key at the specified file path. Find and copy the entire line of the **Public** key, NOT the private key.  
 
 Take that public key into your Proxmox container and run:
@@ -63,6 +65,10 @@ sudo systemctl restart ssh
   
 Test your Connection: Open a terminal on your personal computer and verify you can SSH into the container as your user without typing a password.  
 
+```bash
+ssh YOURUSER@YOURSERVERIP
+```  
+  
 If you get a `Permission Denied:publickey`, make sure you copied the entire line of the public key including the part at the beginning and end.
 
 ## Running the Script
