@@ -25,8 +25,8 @@ This script disables password authentication for SSH. If you run this script bef
 In Proxmox, create a new **Ubuntu Unprivileged LXC.**
 Start the container and log in via the Proxmox web console as `root`.
 Create a standard administrative user (e.g., admin1) and grant `sudo` privileges.
-``` bash
-apt update && sudo apt upgrade -y
+```bash
+apt update && apt upgrade -y
 apt install git -y
 adduser YOURUSER
 usermod -aG sudo YOURUSER
