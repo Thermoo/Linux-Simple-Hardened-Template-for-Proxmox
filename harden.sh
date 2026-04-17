@@ -21,10 +21,6 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 
 echo "Hardening SSH Configuration!"
 sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
-sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-echo "Configuring SSH Banner!"
-echo "Warning: Unauthorized access to this system is forbidden and will be prosecuted by law." | sudo tee /etc/issue.net
-sudo sed -i 's/#Banner none/Banner \/etc\/issue.net' /etc/ssh/sshd_config
 sudo systemctl restart ssh
 
 echo "Configuring Session Settings!"
