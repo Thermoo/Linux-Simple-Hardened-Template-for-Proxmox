@@ -54,6 +54,13 @@ Secure the file permissions:
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
+
+Turn off password SSH login and restart SSH:
+```bash
+sudo sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/sshd_config
+sudo systemctl restart ssh
+```
+  
 Test your Connection: Open a terminal on your personal computer and verify you can SSH into the container as your user without typing a password.  
 
 If you get a `Permission Denied:publickey`, make sure you copied the entire line of the public key including the part at the beginning and end.
