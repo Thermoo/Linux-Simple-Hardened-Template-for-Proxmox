@@ -13,7 +13,7 @@ By converting a hardened container into a Proxmox Template, you can ensure that 
 **- Fail2Ban** - Automatically blocking brute-force SSH attacks  
 **- Unattended-upgrades** - Automated Patching allows for critical security updates to be installed without user input  
 **- RKHunter** - On-demand RootKit & backdoor auditing  
-**- Session Management** - 15-minute global idle timeout to mitigate abandoned session hijacking. Also features a configured SSH pre-login legal warning banner  
+**- Session Management** - 15-minute global idle timeout to mitigate abandoned session hijacking.  
 
   
 	
