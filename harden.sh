@@ -6,7 +6,7 @@ echo "Updating System!"
 sudo apt update && sudo apt upgrade -y
 
 echo "Installing Security Essentials!"
-sudo apt install -y openssh-server ufw fail2ban unattended-upgrades sudo 
+sudo apt install -y openssh-server ufw fail2ban unattended-upgrades sudo rkhunter 
 
 echo "Enabling Security Services on Boot!"
 sudo systemctl enable fail2ban --now
@@ -22,10 +22,18 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 echo "Hardening SSH Configuration!"
 sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
 sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+echo "Configuring SSH Banner!"
+echo "Warning: Unauthorized access to this system is forbidden and will be prosecuted by law." | sudo tee /etc/issue.net
+sudo sed -i 's/#Banner none/Banner \/etc\/issue.net' /etc/ssh/sshd_config
 sudo systemctl restart ssh
+
+echo "Configuring Session Settings!"
+echo "readonly TMOUT=900 export TMOUT" | sudo tee /etc/profile.d/idle_timeout.sh
+sudo chmod 644 /etc/profile.d/idle_timeout.sh
 
 echo "Sanitizing System!"
 sudo truncate -s 0 /etc/machine-id
 sudo apt clean
+
 echo "Hardening Complete! Your system is ready for use or to be used as a template."
 
