@@ -11,9 +11,9 @@ sudo apt install -y openssh-server ufw fail2ban unattended-upgrades sudo rkhunte
 echo "Enabling Security Services on Boot!"
 sudo systemctl enable fail2ban --now
 echo "Configuring UFW Firewall and enabling SSH"
+sudo ufw allow ssh
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw allow ssh 
 sudo ufw --force enable
 
 echo "Configuring Automatic Security Updates!"
